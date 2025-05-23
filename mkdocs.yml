@@ -1,0 +1,8 @@
+site_name: "ai-recommendation-engine"
+site_description: "Recommendation engine for Spotify's music player"
+
+nav:
+  - Introduction: index.md
+
+plugins:
+  - techdocs-core
