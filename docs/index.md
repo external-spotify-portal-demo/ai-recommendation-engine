@@ -1,28 +1,143 @@
-## ai-recommendation-engine
+# Migrating to the New AI Recommendation Engine
 
-Recommendation engine for Spotify's music player
+Welcome to the migration guide for moving from the legacy Spotify Recommendation Engine to the new AI Recommendation Engine. This guide will walk you through the required changes and provide best practices to ensure a smooth transition.
 
-## Getting started
+---
 
-Start write your documentation by adding more markdown (.md) files to this folder (/docs) or replace the content in this file.
+## Overview
 
-## Table of Contents
+Spotify's new AI Recommendation Engine offers:
+- Deep learning-based user behavior modeling
+- Improved personalization and diversity
+- Lower latency and better scalability
 
-The Table of Contents on the right is generated automatically based on the hierarchy
-of headings. Only use one H1 (`#` in Markdown) per file.
+This migration focuses on updating the integration logic, dependencies, and response handling in your project.
 
-## Site navigation
+---
 
-For new pages to appear in the left hand navigation you need edit the `mkdocs.yml`
-file in root of your repo. The navigation can also link out to other sites.
+## Prerequisites
 
-Alternatively, if there is no `nav` section in `mkdocs.yml`, a navigation section
-will be created for you. However, you will not be able to use alternate titles for
-pages, or include links to other sites.
+- Node.js v16 or above
+- Access to the Spotify Developer Portal
+- Credentials for both engines (legacy and new AI)
+- Existing implementation using the legacy engine
 
-Note that MkDocs uses `mkdocs.yml`, not `mkdocs.yaml`, although both appear to work.
-See also <https://www.mkdocs.org/user-guide/configuration/>.
+---
+
+## Step 1: Backup Your Current Implementation
+
+Before proceeding, back up your current codebase and configuration files:
+
+```bash
+cp package.json package.json.bak
+cp -r src/ src_legacy_backup/
+```
+
+---
+
+## Step 2: Update `package.json`
+
+Remove the old engine dependency:
+
+```json
+"dependencies": {
+  "spotify-reco-legacy": "^3.2.1"
+}
+```
+
+Replace it with the new AI engine package:
+
+```json
+"dependencies": {
+  "spotify-ai-recommendation": "^1.0.0"
+}
+```
+
+Then install the new package:
+
+```bash
+npm install
+```
+
+---
+
+## Step 3: Update Import Statements
+
+Replace legacy imports like:
+
+```javascript
+const legacyReco = require('spotify-reco-legacy');
+```
+
+With the new AI engine:
+
+```javascript
+const aiReco = require('spotify-ai-recommendation');
+```
+
+---
+
+## Step 4: Adapt Recommendation Logic
+
+### Legacy Example
+```javascript
+legacyReco.getRecommendations(userId, (err, recs) => {
+  if (err) return console.error(err);
+  console.log(recs);
+});
+```
+
+### New AI Example
+```javascript
+aiReco.fetchAIRecommendations({ userId }).then(recs => {
+  console.log(recs);
+}).catch(console.error);
+```
+
+---
+
+## Step 5: Test the Integration
+
+Use mock user IDs to validate results:
+
+```bash
+npm run test:recommendations
+```
+
+Make sure you:
+- Receive a valid list of track IDs
+- Experience consistent response times
+
+---
+
+## Step 6: Deploy
+
+Once testing is complete:
+
+```bash
+git commit -am "Migrate to new AI recommendation engine"
+git push origin main
+depploy
+```
+
+---
+
+## Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| `Module not found` | Ensure the new package was installed properly |
+| `Empty response` | Confirm the user ID exists in the AI model |
+| `Latency spikes` | Use caching where applicable |
+
+---
 
 ## Support
 
-That's it. If you need support, reach out in [#docs-like-code](https://discord.com/channels/687207715902193673/714754240933003266) on Discord.
+For additional support, reach out via the #reco-eng Slack channel or email reco-support@spotify.com.
+
+---
+
+Happy coding!
+
+*Spotify Recommendation Platform Team*
