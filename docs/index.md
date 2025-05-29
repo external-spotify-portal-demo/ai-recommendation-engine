@@ -41,7 +41,7 @@ Remove the old engine dependency:
 
 ```json
 "dependencies": {
-  "spotify-reco-legacy": "^3.2.1"
+  "music-player-recommendation-engine": "^3.2.1"
 }
 ```
 
@@ -66,7 +66,7 @@ npm install
 Replace legacy imports like:
 
 ```javascript
-const legacyReco = require('spotify-reco-legacy');
+const legacyReco = require('music-player-recommendation-engine');
 ```
 
 With the new AI engine:
