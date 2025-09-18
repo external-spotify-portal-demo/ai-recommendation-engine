@@ -6,6 +6,8 @@ metadata:
   annotations:
     github.com/project-slug: external-spotify-portal-demo/ai-recommendation-engine
     backstage.io/techdocs-ref: dir:.
+    github.com/org: external-spotify-portal-demo
+    github.com/repo: ai-recommendation-engine
 spec:
   type: service
   lifecycle: experimental
