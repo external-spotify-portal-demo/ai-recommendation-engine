@@ -10,11 +10,5 @@ metadata:
     github.com/repo: ai-recommendation-engine
 spec:
   type: service
-  lifecycle: experimental
+  lifecycle: production
   owner: "group:default/kubecon-squad"
-  consumesApis:
-    [
-      spc-sandbox.recommendations.music-catalog,
-      spc-sandbox.recommendations.user-listen-history,
-      spc-sandbox.recommendations.user-preference-embeddings,
-    ]
