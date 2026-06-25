@@ -1,6 +1,6 @@
 <!--- Use this template to document the architecture of a system. Replace <system> in the title with the name of your system, and replace the prompt text under each section header with information relevant for your system. --->
 
-# System Architecture for \<System>
+# System Architecture
 
 ## Overview
 
