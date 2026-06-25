@@ -3,6 +3,7 @@ site_description: "Recommendation engine for Spotify's music player"
 
 nav:
   - Introduction: index.md
+  - System architecture: system-architecture-template.md
 
 plugins:
   - techdocs-core
